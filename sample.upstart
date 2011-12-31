@@ -1,0 +1,14 @@
+exec /usr/local/bin/prize -d -c /etc/prize.cfg >> /var/log/prize.log
+
+pre-start script
+    mkdir /var/run/prize
+end script
+
+post-stop script
+    rm -rf /var/run/prize
+end script
+
+start on runlevel 2
+
+respawn
+respawn limit 5 60
